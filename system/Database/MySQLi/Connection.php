@@ -106,14 +106,16 @@ class Connection extends BaseConnection implements ConnectionInterface
 			$socket   = '';
 		}
 
-		$client_flags = ($this->compress === true) ? MYSQLI_CLIENT_COMPRESS : 0;
+
+        $client_flags = ($this->compress === true) ? MYSQLI_CLIENT_COMPRESS : 0;
 		$this->mysqli = mysqli_init();
 
 		mysqli_report(MYSQLI_REPORT_ALL & ~MYSQLI_REPORT_INDEX);
 
 		$this->mysqli->options(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
 
-		if (isset($this->strictOn))
+
+        if (isset($this->strictOn))
 		{
 			if ($this->strictOn)
 			{
@@ -173,7 +175,7 @@ class Connection extends BaseConnection implements ConnectionInterface
 			}
 		}
 
-		try
+        try
 		{
 			if ($this->mysqli->real_connect($hostname, $this->username, $this->password,
 				$this->database, $port, $socket, $client_flags)

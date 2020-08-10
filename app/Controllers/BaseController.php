@@ -36,6 +36,21 @@ class BaseController extends Controller
      */
     protected $blade;
 
+    public function message(array $data)
+    {
+        session()->set('message', $data);
+        session()->markAsFlashdata('message');
+    }
+
+    public function flash(string $type, string $message)
+    {
+        session()->set('flash', [
+            'type' => $type,
+            'message' => $message
+        ]);
+        session()->markAsFlashdata('flash');
+    }
+
     /**
      * Constructor.
      */
@@ -44,11 +59,13 @@ class BaseController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
+        helper(['html', 'form']);
+
+
         //--------------------------------------------------------------------
         // Preload any models, libraries, etc, here.
         //--------------------------------------------------------------------
         // E.g.:
-        // $this->session = \Config\Services::session();
         $views = dirname(__DIR__) . '/Views';
         $cache = dirname(__DIR__) . '/cache';
         $this->blade = new BladeOne($views, $cache, BladeOne::MODE_DEBUG); // MODE_DEBUG allows to pinpoint troubles.
@@ -61,8 +78,16 @@ class BaseController extends Controller
      */
     public function render(?string $viewPath = null, array $data = [])
     {
+        $data = $this->preRender($data);
         echo $this->blade->run($viewPath, $data);
         return;
+    }
+
+    protected function preRender(array $data = []): array
+    {
+        $data['message'] = session('message');
+        $data['flash'] = session('flash');
+        return $data;
     }
 
 }
