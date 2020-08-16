@@ -30,6 +30,12 @@ class Auth
         return (new UserModel())->findByOperateurID(session('userID'));
     }
 
+    public static function getUserAndKey()
+    {
+        if(!self::Check()) return null;
+        return (new UserModel())->findByOperatorIDAndKey(session('userID'));
+    }
+
     public static function Check() : bool
     {
         return session()->has('userID');

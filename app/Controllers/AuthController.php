@@ -68,11 +68,53 @@ class AuthController extends BaseController
                     ),
                     'charge' => array(
                         "title" => "Recharger les comptes",
-                        "url" => route_to('index'),
+                        "url" => route_to('recharge.index'),
+                        'active' => false
+                    ),
+                    'show' => array(
+                        "title" => "Valider les rechargements",
+                        "url" => route_to('recharge.show'),
+                        'active' => false
+                    ),
+
+                )
+            ),
+            "keys" => array(
+                "title" => "Clés d'Installation",
+                "url" => base_url(),
+                "icon" => "fal fa-key",
+                'active' => false,
+                'sub' => array(
+                    'list' => array(
+                        "title" => "Liste des Clés d'installation",
+                        "url" => route_to('keys.index'),
                         'active' => false
                     ),
                 )
-            )
+            ),
+            "resto" => array(
+                "title" => "Restauration",
+                "url" => base_url(),
+                "icon" => "fal fa-burger-soda",
+                'active' => false,
+                'sub' => array(
+                    'summary' => array(
+                        "title" => "Bilan des consommations",
+                        "url" => route_to('summary.index'),
+                        'active' => false
+                    ),
+                    'facturations' => array(
+                        "title" => "Gestion des facturations",
+                        "url" => route_to('facturations.index'),
+                        'active' => false
+                    ),
+                    'dishes' => array(
+                        "title" => "Gestion des repas",
+                        "url" => route_to('dishes.index'),
+                        'active' => false
+                    ),
+                )
+            ),
         );
     }
 

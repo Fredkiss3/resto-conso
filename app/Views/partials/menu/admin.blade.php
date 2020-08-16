@@ -43,7 +43,7 @@
 
         <ul id="js-nav-menu" class="nav-menu">
             @foreach($menu as $item)
-                <li @if($item['active']) class="active" @endif>
+                <li @if($item['active']) class="active open" @endif>
                     <a href="#" title="{{ $item['title'] }}" data-filter-tags="{{ $item['title'] }}">
                         <i class="{{ $item['icon'] }}"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">{{ $item['title'] }}</span>

@@ -83,11 +83,44 @@ class BaseController extends Controller
         return;
     }
 
+    public function renderJson($data)
+    {
+        echo json_encode($data);
+        return;
+    }
+
     protected function preRender(array $data = []): array
     {
         $data['message'] = session('message');
         $data['flash'] = session('flash');
         return $data;
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    protected function getVar(string $key)
+    {
+        return $this->request->getVar($key);
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    protected function getJSON()
+    {
+        return $this->request->getJSON();
+    }
+
+    /**
+     * Vérifier si c'est bien une requête Post
+     * @return bool
+     */
+    public function isPost()
+    {
+        return $this->request->getMethod(true) == "POST";
     }
 
 }

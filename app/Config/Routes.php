@@ -41,8 +41,56 @@ $routes->group('accounts', function(RouteCollection $routes)
 {
     $routes->get('', 'AccountController::index', ['as' => 'accounts.index']);
     $routes->post('store', 'AccountController::store', ['as' => 'accounts.store']);
-//    $routes->add('blog', 'Admin\Blog::index');
+    $routes->post('toggle', 'AccountController::toggle', ['as' => 'accounts.toggle']);
+    $routes->post('reset', 'AccountController::reset', ['as' => 'accounts.reset']);
+    $routes->post('delete', 'AccountController::delete', ['as' => 'accounts.delete']);
+    $routes->post('edit', 'AccountController::edit', ['as' => 'accounts.edit']);
 });
+
+$routes->group('keys', function(RouteCollection $routes)
+{
+    $routes->get('', 'KeyController::index', ['as' => 'keys.index']);
+    $routes->post('delete', 'KeyController::delete', ['as' => 'keys.delete']);
+    $routes->post('toggle', 'KeyController::toggle', ['as' => 'keys.toggle']);
+    $routes->post('store', 'KeyController::store', ['as' => 'keys.store']);
+});
+
+
+$routes->group('recharge', function(RouteCollection $routes)
+{
+    $routes->get('', 'RechargeController::index', ['as' => 'recharge.index']);
+    $routes->get('show', 'RechargeController::show', ['as' => 'recharge.show']);
+    $routes->post('submit', 'RechargeController::submit', ['as' => 'recharge.submit']);
+    $routes->post('cancel', 'RechargeController::cancel', ['as' => 'recharge.cancel']);
+    $routes->post('accept', 'RechargeController::accept', ['as' => 'recharge.accept']);
+});
+
+$routes->group('resto', function(RouteCollection $routes)
+{
+    $routes->group('summary', function (RouteCollection $routes) {
+        $routes->get('', 'SummaryController::index', ['as' => 'summary.index']);
+        $routes->get('show', 'SummaryController::show', ['as' => 'summary.show']);
+    });
+
+    $routes->group('facturations', function(RouteCollection $routes)
+    {
+        $routes->get('', 'FacturationController::index', ['as' => 'facturations.index']);
+        $routes->post('store', 'FacturationController::store', ['as' => 'facturations.store']);
+        $routes->post('edit', 'FacturationController::edit', ['as' => 'facturations.edit']);
+        $routes->post('delete', 'FacturationController::delete', ['as' => 'facturations.delete']);
+    });
+
+    $routes->group('dishes', function(RouteCollection $routes)
+    {
+        $routes->get('', 'DishController::index', ['as' => 'dishes.index']);
+        $routes->post('store', 'DishController::store', ['as' => 'dishes.store']);
+        $routes->post('edit', 'DishController::edit', ['as' => 'dishes.edit']);
+        $routes->post('delete', 'DishController::delete', ['as' => 'dishes.delete']);
+    });
+});
+
+
+
 
 
 /**

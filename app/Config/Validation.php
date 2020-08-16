@@ -13,6 +13,7 @@ class Validation
 	 * @var array
 	 */
 	public $ruleSets = [
+        \App\Validation\CustomRules::class,
 		\CodeIgniter\Validation\Rules::class,
 		\CodeIgniter\Validation\FormatRules::class,
 		\CodeIgniter\Validation\FileRules::class,
