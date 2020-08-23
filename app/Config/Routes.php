@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('HomeController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -53,6 +53,12 @@ $routes->group('keys', function(RouteCollection $routes)
     $routes->post('delete', 'KeyController::delete', ['as' => 'keys.delete']);
     $routes->post('toggle', 'KeyController::toggle', ['as' => 'keys.toggle']);
     $routes->post('store', 'KeyController::store', ['as' => 'keys.store']);
+});
+
+$routes->group('api', function(RouteCollection $routes)
+{
+    $routes->post('install', 'ApiController::install', ['as' => 'keys.index']);
+    $routes->post('sync', 'ApiController::sync', ['as' => 'keys.delete']);
 });
 
 

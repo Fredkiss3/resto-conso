@@ -84,7 +84,7 @@ class RechargeModel extends Model
 
 //                d($account, $recharge, $idRecharge);
 
-                $recharge->statut = true;
+                $recharge->statut = 1;
                 $recharge->dateValidation = date('Y-m-d H:i:s');
                 $this->save($recharge);
             }
@@ -97,7 +97,7 @@ class RechargeModel extends Model
         $recharge = $this->find($idRecharge);
         if ($recharge) {
             $recharge->commentaireAnnulation = $reason;
-            $recharge->statut = true;
+            $recharge->statut = -1;
             $recharge->dateValidation = date('Y-m-d H:i:s');
             $this->save($recharge);
         }

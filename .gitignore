@@ -7,6 +7,10 @@
 .AppleDouble
 .LSOverride
 
+# rar
+*.rar
+*.zip
+
 # OS X Thumbnails
 ._*
 

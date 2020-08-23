@@ -85,6 +85,7 @@ class BaseController extends Controller
 
     public function renderJson($data)
     {
+        header('Content-type:application/json;charset=utf-8');
         echo json_encode($data);
         return;
     }
@@ -105,14 +106,14 @@ class BaseController extends Controller
         return $this->request->getVar($key);
     }
 
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    protected function getJSON()
-    {
-        return $this->request->getJSON();
-    }
+    // /**
+    //  * @param string $key
+    //  * @return mixed
+    //  */
+    // protected function getJSON()
+    // {
+    //     return $this->request->getJSON();
+    // }
 
     /**
      * Vérifier si c'est bien une requête Post
