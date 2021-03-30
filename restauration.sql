@@ -1,3 +1,94 @@
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `operateur`
+--
+
+DROP TABLE IF EXISTS `operateur`;
+CREATE TABLE IF NOT EXISTS `operateur` (
+	`idOperateur` INT(11) NOT NULL AUTO_INCREMENT,
+	`login` VARCHAR(40) NOT NULL,
+	`motDePasse` VARCHAR(40) NOT NULL,
+	`photo` VARCHAR(100) NOT NULL DEFAULT 'Photos/photoAdmin/default.png',
+	`personel` INT(11) NOT NULL,
+	`profil` INT(11) NOT NULL DEFAULT '1',
+	`site` INT(11) NOT NULL DEFAULT '1',
+	`changePasse` TINYINT(4) NOT NULL DEFAULT '0',
+	`bloquer` TINYINT(4) NOT NULL DEFAULT '0',
+	`supprimer` TINYINT(4) NOT NULL DEFAULT '0',
+	`dateCreation` INT(11) NOT NULL DEFAULT '2004',
+	`dateSuppression` INT(11) NOT NULL DEFAULT '3000',
+	PRIMARY KEY (`idOperateur`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=20
+;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `personel`
+--
+DROP TABLE IF EXISTS `personel`;
+CREATE TABLE IF NOT EXISTS `personel` (
+	`idPersonel` INT(11) NOT NULL AUTO_INCREMENT,
+	`nom` VARCHAR(50) NOT NULL DEFAULT 'indefini',
+	`prenoms` VARCHAR(100) NOT NULL DEFAULT 'indefini',
+	`interventions` INT(11) NOT NULL DEFAULT '0',
+	`civilite` INT(11) NOT NULL DEFAULT '1',
+	`specialisation` INT(11) NOT NULL DEFAULT '1',
+	`dateNaissance` VARCHAR(20) NOT NULL DEFAULT '01/01/2017',
+	`lieuNaissance` VARCHAR(20) NOT NULL DEFAULT 'indefini',
+	`genre` VARCHAR(10) NOT NULL DEFAULT 'indefini',
+	`email` VARCHAR(50) NOT NULL DEFAULT 'indefini',
+	`numeroTelephone` VARCHAR(25) NOT NULL,
+	`numeroTelephoneDunProche` VARCHAR(25) NOT NULL DEFAULT 'indefini',
+	`nationalite` INT(11) NOT NULL DEFAULT '1',
+	`matricule` VARCHAR(25) NOT NULL DEFAULT 'indefini',
+	`anneeAjout` VARCHAR(25) NOT NULL DEFAULT 'indefini',
+	`dateAjout` VARCHAR(20) NOT NULL DEFAULT 'indefini',
+	`anneDepart` VARCHAR(20) NOT NULL DEFAULT '3000',
+	`dateDepart` VARCHAR(20) NOT NULL DEFAULT 'indefini',
+	`photo` VARCHAR(100) NOT NULL DEFAULT 'Photos/photoAdmin/default.png',
+	`services` INT(11) NOT NULL DEFAULT '1',
+	PRIMARY KEY (`idPersonel`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=26
+;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `profil`
+--
+DROP TABLE IF EXISTS `profil`;
+CREATE TABLE IF NOT EXISTS `profil` (
+	`idProfil` INT(11) NOT NULL AUTO_INCREMENT,
+	`profil` VARCHAR(32) NOT NULL,
+	`menu` VARCHAR(32) NOT NULL,
+	`discriminant` TINYINT(4) NOT NULL DEFAULT '0',
+	`hebergement` INT(11) NOT NULL DEFAULT '0',
+	`supprimer` TINYINT(4) NOT NULL DEFAULT '0',
+	`scolarite` INT(11) NOT NULL DEFAULT '0',
+	`generale` INT(11) NOT NULL DEFAULT '0',
+	`servicesocial` INT(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`idProfil`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=11
+;
+
+
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -15,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `repas`
     `heureFinWeekend`   time        NOT NULL,
     `supprime`          boolean     NOT NULL DEFAULT 0,
     PRIMARY KEY (`idRepas`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -32,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `facturation`
     `libelle`       varchar(50) NOT NULL,
     `supprime`      boolean     NOT NULL DEFAULT 0,
     PRIMARY KEY (`idFacturation`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -53,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `prix`
     `actif`       boolean NOT NULL DEFAULT 1,
     `supprime`    boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (`idPrix`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -76,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `compteresto`
     `codeDeFacturation`   varchar(255) UNIQUE NOT NULL,
     `supprime`    boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (`idCompte`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -93,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `trimestre`
     `libelle`         varchar(50) NOT NULL, 
     `supprime`        boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (`idTrimestre`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -113,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `trimestreannee`
     `dateFin`              date    NOT NULL,
     `supprime`             boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (`idTrimestreAnnee`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -134,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `consommation`
     `dateEtHeure`       datetime NOT NULL,
     `supprime`          boolean  NOT NULL DEFAULT 0,
     PRIMARY KEY (`idConsommation`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -153,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `cleinstallation`
     `actif`             boolean     NOT NULL DEFAULT 1,
     `supprime`          boolean     NOT NULL DEFAULT 0,
     PRIMARY KEY (`idCleinstallation`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -178,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `recharge`
     `dateValidation`  datetime NOT NULL,
     `supprime`        boolean  NOT NULL DEFAULT 0,
     PRIMARY KEY (`idRecharge`)
-) ENGINE = MyISAM
+) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
@@ -209,6 +300,6 @@ CREATE TABLE IF NOT EXISTS `recharge`
 --      autres VARCHAR(255) DEFAULT NULL,
 --      etudiant int(11) NOT NULL,
 --      PRIMARY KEY (`idSuivi`)
---     ) ENGINE = MyISAM
+--     ) ENGINE = InnoDB
 --   AUTO_INCREMENT = 1
 --   DEFAULT CHARSET = latin1;
