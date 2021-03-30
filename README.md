@@ -1,57 +1,44 @@
-# CodeIgniter 4 Framework
-
-## What is CodeIgniter?
-
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure. 
-More information can be found at the [official site](http://codeigniter.com).
-
-This repository holds the distributable version of the framework,
-including the user guide. It has been built from the 
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
-
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
-
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/). 
+# Resto-Conso
 
 
-## Important Change with index.php
+Il s'agit d'une plateforme Web/API pour la facturation des consommations étudiantes dans les restaurants universitaires. Ce projet a été développé avec CodeIgniter version 4.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Pré-requis
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- avoir `composer` installé
+- avoir `php >= 7.2` installé
 
-**Please** read the user guide for a better explanation of how CI4 works!
-The user guide updating and deployment is a bit awkward at the moment, but we are working on it!
 
-## Repository Management
+### Comment lancer le projet
 
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Pour lancer l'application il faut : 
 
-This repository is a "distribution" one, built by our release preparation script. 
-Problems with it can be raised on our forum, or as issues in the main repository.
+1- installer les dépendances :
 
-## Contributing
+```bash
+composer install 
+```
 
-We welcome contributions from the community.
+2- Mettre en place la base de données :
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing.md) section in the development repository.
+Modifier le fichier `.env` pour correspondre à votre base de données 
 
-## Server Requirements
+```dotenv
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
 
-PHP version 7.2 or higher is required, with the following extensions installed: 
+database.default.hostname = localhost
+database.default.database = nom_de_votre_base_de_donnees
+database.default.username = utilisateur
+database.default.password = mot_de_passe
+database.default.DBDriver = PDO
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+3- Lancer le serveur :
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+```bash
+php -S localhost:8000 -t public
+```
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+5- Ouvrir le navigateur à l'adresse http://localhost:8000
